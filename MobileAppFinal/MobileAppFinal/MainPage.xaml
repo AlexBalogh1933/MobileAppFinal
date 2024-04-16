@@ -3,5 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileAppFinal.MainPage">
 
+    <StackLayout Padding="10">
+
+        <Entry x:Name="NewToDoEntry" Placeholder="New To-Do Item" ReturnType="Done" />
+
+        <Button Text="Add" Clicked="AddToDoButton_Clicked" />
+
+        <CollectionView x:Name="ToDoCollectionView" ItemsSource="{Binding ToDoItems}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" IsChecked="{Binding IsCompleted}"
+                              CheckedChanged="ToggleCompletionCheckBox_CheckedChanged"
+                              VerticalOptions="Center" />
+
+                        <Label Grid.Column="1" Text="{Binding Title}" VerticalOptions="Center" />
+
+                        <Button Grid.Column="2" Text="Delete" Clicked="DeleteToDoItemButton_Clicked" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 
 </ContentPage>
